@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catena-X Netzwerk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Catena-X Netzwerkvisualisierung</h1>
+    <p>Interaktive Darstellung des Catena-X-Datenraums mit Teilnehmern, Tools und Datenflüssen.</p>
+    <div id="visualization">
+        <svg width="1200" height="800"></svg>
+    </div>
+    <div id="details-box" class="hidden">
+        <h2 id="details-title"></h2>
+        <p id="details-content"></p>
+        <button id="close-btn">Schließen</button>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
