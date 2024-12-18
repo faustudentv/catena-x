@@ -1,73 +1,144 @@
+/* Allgemeine Stile */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
+    text-align: center;
 }
 
 h1 {
-    font-size: 28px;
-    color: #222;
-    margin-top: 20px;
+    margin: 20px 0;
+    font-size: 2rem;
 }
 
-p {
-    font-size: 16px;
-    color: #555;
-    margin: 10px auto 20px auto;
-    width: 80%;
-    line-height: 1.5;
+button {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
 }
 
-svg {
-    margin: 20px auto;
+button:hover {
+    background-color: #125ea3;
+}
+
+.screen {
+    display: none;
+    padding: 20px;
+}
+
+.screen.active {
     display: block;
-    border: 1px solid #ddd;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#details-box {
+/* Netzwerk-Container */
+#network-container {
+    position: relative;
+    width: 90%;
+    height: 600px;
+    margin: 20px auto;
+    border: 2px solid #ccc;
+    background-color: white;
+    overflow: hidden;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+}
+
+/* KITs zum Drag-and-Drop */
+.kit {
+    padding: 10px;
+    margin: 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: grab;
+}
+
+.kit:hover {
+    background-color: #125ea3;
+}
+
+/* EDC-Kreise */
+.edc-circle {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Drop-Bereich */
+.drop-area {
+    width: 60%;
+    height: 100px;
+    border: 2px dashed #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    background-color: #f9f9f9;
+    color: #555;
+}
+
+/* KIT-Popup */
+#kit-popup {
     position: fixed;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -20%);
-    width: 400px;
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
     padding: 20px;
-    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    z-index: 1000;
+}
+
+.hidden {
     display: none;
+}
+
+.question {
+    margin: 20px auto;
     text-align: left;
+    width: 60%;
 }
 
-#details-title {
-    font-size: 20px;
-    margin: 0;
-    color: #333;
+.question h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
 }
 
-#details-content {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-}
-
-#close-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.question label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-#close-btn:hover {
-    background-color: #0056b3;
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
+
