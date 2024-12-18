@@ -7,17 +7,124 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Catena-X Netzwerkvisualisierung</h1>
-    <p>Interaktive Darstellung des Catena-X-Datenraums mit Teilnehmern, Tools und Datenflüssen.</p>
-    <div id="visualization">
-        <svg width="1200" height="800"></svg>
+    <!-- Start-Screen -->
+<div id="start-screen" class="screen active">
+    <h1>Willkommen im Catena-X Showroom</h1>
+    <p>Interaktive Datenverarbeitung in Catena-X</p>
+
+    <!-- Agenda -->
+    <div id="agenda" style="margin: 30px auto; text-align: left; max-width: 600px; font-size: 1rem; line-height: 1.6;">
+        <h3>Agenda</h3>
+        <ol>
+            <li><strong>Raum 2:</strong> Unternehmen vernetzen – Entdecken Sie interaktive Netzwerke von Unternehmen und Tools.</li>
+            <li><strong>Raum 3:</strong> KIT-Auswahl – Wählen und verknüpfen Sie KITs mit Unternehmen.</li>
+            <li><strong>Raum 4:</strong> Weitere Interaktivität – Erleben Sie erweiterte Datenverarbeitungsfunktionen.</li>
+            <li><strong>Raum 5:</strong> Fragen zur Datenverarbeitung – Testen Sie Ihr Wissen über Datennutzung in Catena-X.</li>
+        </ol>
     </div>
-    <div id="details-box" class="hidden">
-        <h2 id="details-title"></h2>
-        <p id="details-content"></p>
-        <button id="close-btn">Schließen</button>
+
+    <button onclick="navigateTo('room2')">Zu Raum 2</button>
+</div>
+
+
+    <!-- Raum 2 -->
+    <div id="room2" class="screen">
+        <h1>Raum 2: Unternehmen vernetzen</h1>
+        <p>Interaktives Netzwerk von Unternehmen und Tools.</p>
+        <div id="network-container"></div>
+        <button onclick="navigateTo('start-screen')">Zurück</button>
+        <button onclick="navigateTo('room3')">Zu Raum 3</button>
     </div>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- Raum 3 -->
+    <div id="room3" class="screen">
+        <h1>Raum 3: KIT-Auswahl</h1>
+        <p>Ziehen Sie ein KIT in den gemeinsamen Drop-Bereich für beide Unternehmen:</p>
+
+        <!-- EDC-Kreise -->
+        <div id="edc-left" class="edc-circle" style="top: 200px; left: 25%;">EDC A</div>
+        <div id="edc-right" class="edc-circle" style="top: 200px; right: 25%;">EDC B</div>
+
+        <!-- Verbindungslinie -->
+        <svg id="connections" style="position: absolute; width: 100%; height: 100%; pointer-events: none;">
+            <line id="edc-connection" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="3"></line>
+        </svg>
+
+        <!-- KITs zum Ziehen -->
+        <div id="kit-container" style="display: flex; justify-content: center; margin: 30px 0;">
+            <div id="kit-traceability" class="kit" draggable="true" ondragstart="drag(event)">Traceability KIT</div>
+            <div id="kit-pcf" class="kit" draggable="true" ondragstart="drag(event)">PCF KIT</div>
+            <div id="kit-dcm" class="kit" draggable="true" ondragstart="drag(event)">DCM KIT</div>
+            <div id="kit-ecopass" class="kit" draggable="true" ondragstart="drag(event)">EcoPass KIT</div>
+        </div>
+
+        <!-- Drop-Bereich -->
+        <div id="drop-area" class="drop-area" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <p>Legen Sie hier ein KIT ab</p>
+        </div>
+
+        <!-- KIT-Popup -->
+        <div id="kit-popup" class="hidden">
+            <h3 id="kit-popup-title"></h3>
+            <p id="kit-popup-content"></p>
+            <button onclick="closeKitPopup()">Schließen</button>
+        </div>
+
+        <!-- Buttons -->
+        <button onclick="navigateTo('room2')">Zurück zu Raum 2</button>
+        <button onclick="navigateTo('room4')">Zu Raum 4</button>
+        <button onclick="navigateTo('start-screen')">Zurück zum Start</button>
+    </div>
+
+    <!-- Raum 4 -->
+    <div id="room4" class="screen">
+        <h1>Raum 4: Weitere Interaktivität</h1>
+        <p>Hier können Sie weitere Daten oder Informationen interaktiv bearbeiten.</p>
+
+        <!-- Bereich für zukünftige Interaktionen -->
+        <div style="width: 80%; height: 400px; margin: 20px auto; border: 2px solid #888; text-align: center; display: flex; align-items: center; justify-content: center;">
+            <p style="color: #555;">Interaktive Inhalte werden hier angezeigt.</p>
+        </div>
+
+        <!-- Buttons -->
+        <button onclick="navigateTo('room3')">Zurück zu Raum 3</button>
+        <button onclick="navigateTo('room5')">Zu Raum 5</button>
+        <button onclick="navigateTo('start-screen')">Zurück zum Start</button>
+    </div>
+
+    <!-- Raum 5 -->
+    <div id="room5" class="screen">
+        <h1>Raum 5: Fragen zur Datenverarbeitung</h1>
+        <p>Beantworten Sie die folgenden Fragen zur Datennutzung in Catena-X:</p>
+
+        <!-- Frage 1 -->
+        <div class="question">
+            <h3>1. Welche Vorteile bietet die Datenverarbeitung in Catena-X?</h3>
+            <label><input type="radio" name="question1" value="a"> Erhöhte Transparenz und Nachverfolgbarkeit</label><br>
+            <label><input type="radio" name="question1" value="b"> Reduzierte Datensicherheit</label><br>
+            <label><input type="radio" name="question1" value="c"> Geringere Effizienz in der Lieferkette</label>
+        </div>
+
+        <!-- Frage 2 -->
+        <div class="question">
+            <h3>2. Wer behält die Kontrolle über die ausgetauschten Daten?</h3>
+            <label><input type="radio" name="question2" value="a"> Der Datenraum-Provider</label><br>
+            <label><input type="radio" name="question2" value="b"> Die einzelnen Unternehmen</label><br>
+            <label><input type="radio" name="question2" value="c"> Keine Kontrolle</label>
+        </div>
+
+        <!-- Ergebnis-Button -->
+        <button onclick="submitAnswers()">Antworten Überprüfen</button>
+
+        <!-- Ergebnisbereich -->
+        <div id="result" class="hidden" style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;"></div>
+
+        <!-- Navigation -->
+        <button onclick="navigateTo('room4')">Zurück zu Raum 4</button>
+        <button onclick="navigateTo('start-screen')">Zurück zum Start</button>
+    </div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
